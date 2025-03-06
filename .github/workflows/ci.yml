@@ -11,6 +11,11 @@ on:
 env:
   SECRET_KEY: a-secret-key
   DEBUG: False
+  DB_HOST: 127.0.0.1
+  DB_PORT: 5432
+  DB_NAME: django-rest-boilerplate
+  DB_USER: hasan
+  DB_PASSWORD:
 
 jobs:
   test:
