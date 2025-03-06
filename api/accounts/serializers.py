@@ -1,7 +1,4 @@
 from rest_framework import serializers
-from api.common.utils import (
-    twilio_verification,
-)
 from api.users.models import User
 from api.users.mixins import UserAvatarLinkSerializerMixin
 
@@ -37,34 +34,3 @@ class ProfileSerializer(
             "rank",
         )
         extra_kwargs = {"avatar": {"write_only": True}}
-
-
-class PhoneNumberSerializer(serializers.ModelSerializer):
-    otp = serializers.CharField(required=False)
-
-    class Meta:
-        model = User
-        fields = ("phone_number", "otp")
-        extra_kwargs = {"phone_number": {"required": True}}
-
-    def validate_phone_number(self, phone_number):
-        if phone_number == self.instance.phone_number:
-            msg = "Phone number can't be same as old one."
-            raise serializers.ValidationError(msg)
-        return phone_number
-
-    def validate_otp(self, otp):
-        phone_number = self.initial_data["phone_number"]
-        if not twilio_verification.is_valid(phone_number, otp):
-            raise serializers.ValidationError("Invalid OTP code.")
-        return otp
-
-    def update(self, instance, validated_data):
-        phone_number = validated_data.get("phone_number")
-        otp = validated_data.get("otp")
-        if not otp:
-            twilio_verification.send_through_sms(phone_number)
-            return instance
-        instance.phone_number = phone_number
-        instance.save()
-        return instance
