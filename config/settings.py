@@ -310,11 +310,5 @@ HEADLESS_FRONTEND_URLS = {
     "account_reset_password_from_key": "/account/password/reset/{key}",
 }
 
-# api.common
-TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN = env("TWILIO_AUTH_TOKEN")
-TWILIO_VERIFY_SERVICE_SID = env("TWILIO_VERIFY_SERVICE_SID")
-
-
 # api.users
 USERNAME_MAX_LENGTH = 35
