@@ -3,14 +3,14 @@ services:
     hostname: web1
     build: ./web
     ports:
-      - 5000:5000
-  
+      - 80:5000
+
   web2:
     hostname: web2
     build: ./web
     ports:
       - 82:5000
-  
+
   nginx:
     build: ./nginx
     ports:

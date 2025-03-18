@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sokpy*q9_=6j-9mrh_l)*k+&im(xfbxz_8=&u536n@9s)9&*gv
 DEBUG = True
 
 # A list of strings representing the host/domain names that this Django site can serve.
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']  # or specific IP if needed
 
 
 # Application definition
@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'helloworld.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'helloworld.sqlite3',
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
+
 
 
 # Password validation

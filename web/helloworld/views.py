@@ -1,4 +1,5 @@
+import os
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello, world!\n")
+    return HttpResponse(f"Hello, world! {os.uname().nodename}")
