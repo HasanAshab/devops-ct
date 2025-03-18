@@ -1,0 +1,20 @@
+services:
+  web1:
+    hostname: web1
+    build: ./web
+    ports:
+      - 5000:5000
+  
+  web2:
+    hostname: web2
+    build: ./web
+    ports:
+      - 82:5000
+  
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - web1
+      - web2
