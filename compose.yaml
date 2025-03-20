@@ -2,19 +2,21 @@ services:
   web1:
     hostname: web1
     build: ./web
+    command: python manage.py runserver 0.0.0.0:5000
     ports:
-      - 80:5000
+      - 81:5000
 
   web2:
     hostname: web2
     build: ./web
+    command: python manage.py runserver 0.0.0.0:5000
     ports:
       - 82:5000
 
   nginx:
     build: ./nginx
     ports:
-      - '80:80'
+      - 80:80
     depends_on:
       - web1
       - web2
