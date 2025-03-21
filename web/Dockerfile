@@ -10,7 +10,7 @@ COPY . .
 RUN sed -i 's/\r$//g' /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-RUN groupadd -r user && useradd -r -g user user
-USER user
+RUN groupadd -r user && useradd -r -g user docker
+USER docker
 
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
