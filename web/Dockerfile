@@ -1,4 +1,5 @@
-FROM python:3.11.4-slim-buster
+# --- Base Stage ---
+FROM python:3.11.4-slim-buster as base
 WORKDIR /app
 
 RUN pip install --upgrade pip
@@ -10,7 +11,15 @@ COPY . .
 RUN sed -i 's/\r$//g' /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-RUN groupadd -r user && useradd -r -g user docker
-USER docker
+
+# --- Development Stage ---
+FROM base AS dev
+RUN apt-get install git
+
+# --- Production Stage ---
+FROM base AS prod
+RUN groupadd -r user && useradd -r -g user appuser
+USER appuser
 
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
+
