@@ -15,6 +15,7 @@ RUN chmod +x /app/entrypoint.sh
 # --- Development Stage ---
 FROM base AS dev
 RUN apt-get install git
+# ... TODO
 
 # --- Production Stage ---
 FROM base AS prod
