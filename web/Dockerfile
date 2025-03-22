@@ -17,8 +17,8 @@ RUN sed -i 's/\r$//g' entrypoint.sh entrypoint.prod.sh && \
 
 # --- Development Stage ---
 FROM base AS dev
-RUN apt-get install git
-
+RUN apt-get update && apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
 
 # ... TODO
 
