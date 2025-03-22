@@ -28,7 +28,9 @@ ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
 # --- Production Stage ---
 FROM base AS prod
 
-RUN groupadd -r user && useradd -r -g user appuser
+RUN groupadd -r user && useradd -r -g user appuser && \
+  chown -R appuser:appuser /app
+
 USER appuser
 
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.prod.sh"]
