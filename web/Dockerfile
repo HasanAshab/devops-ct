@@ -1,5 +1,5 @@
 # --- Base Stage ---
-FROM python:3.11.4-slim-buster as base
+FROM python:3.11.4-slim-buster AS base
 
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
