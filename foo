@@ -1,0 +1,13 @@
+FROM node:12.2
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install htop && rm -rf /var/lib/apt/lists/*
+
+COPY package.json package-lock.json .
+
+RUN npm install --silent --progress=false
+
+COPY . .
+
+CMD ["npm", "start"]
