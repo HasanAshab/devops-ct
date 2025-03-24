@@ -3,7 +3,7 @@ services:
     hostname: web1
     build:
       context: ./web
-      target: dev
+      target: prod
     command: python manage.py runserver 0.0.0.0:5000
     ports:
       - 81:5000
@@ -12,7 +12,7 @@ services:
     hostname: web2
     build:
       context: ./web
-      target: dev
+      target: prod
     command: python manage.py runserver 0.0.0.0:5000
     ports:
       - 82:5000
